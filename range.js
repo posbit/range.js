@@ -6,6 +6,11 @@ function Range(first, last, step) {
         return this;
     };
 
+    this.over = function (array) {
+        sequence = array;
+        return this;
+    };
+
     if (first === undefined) {
         first = 0;
     }
