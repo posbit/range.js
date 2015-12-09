@@ -33,25 +33,7 @@ function Range(first, last, step) {
         return this;
     };
 
-    if (first === undefined) {
-        first = 0;
-    }
-    if (last === undefined) {
-        // to make Range(10) produce [0, 1, 2, ..., 8, 9]
-        last = first;
-        first = 0;
-    }
-    if (!step) {
-        // prevent 0-step ranges as they would create infinite loops
-        // since the whole range sequence is created during range object construction
-        step = 1;
-    }
-
-    for (var i = first; ((first < last) ? (i < last) : (i > last)); i += step) {
-        sequence.push(i);
-    }
-
-    return this;
+    return this.range(first, last, step);
 }
 
 function range(first, last, step) {
