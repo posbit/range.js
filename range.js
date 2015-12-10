@@ -1,13 +1,13 @@
 function Range(first, last, step) {
     var sequence = [];
+    var object = {};
 
     this.forEach = function (callback) {
         sequence.forEach(callback);
         return this;
     };
-
-    this.forEachOf = function (object, callback) {
-        Object.keys(object).forEach(function (key) { callback(key, object[key], object); });
+    this.forEachOf = function (callback) {
+        sequence.forEach(function (key) { callback(key, object[key], object); });
     };
 
     this.range = function (first, last, step) {
@@ -38,6 +38,7 @@ function Range(first, last, step) {
             throw ('object "' + typeof(array) + '" is not iterable');
         }
 
+        object = array;
         sequence = [];
         if (len) {
             for (var i = 0; i < len; ++i) {
@@ -113,8 +114,8 @@ print('orange({foo: 0, bar: 1}).forEach(...): range over an object');
 orange({foo: 0, bar: 1}).forEach(function (item) { print(item); });
 
 print();
-print('range().forEachOf{foo: 0, bar: 1}, ...): range over an object taking a (key,value,object) callback');
-range().forEachOf({foo: 0, bar: 1}, function (key, value) { print(key, value); });
+print('range().over({foo: 0, bar: 1}).forEachOf(...): range over an object taking a (key,value,object) callback');
+range().over({foo: 0, bar: 1}).forEachOf(function (key, value) { print(key, value); });
 
 print();
 print('range().over("Bang").forEach(...): range over a string');
