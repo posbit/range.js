@@ -29,7 +29,21 @@ function Range(first, last, step) {
         return this;
     };
     this.over = function (array) {
-        sequence = array;
+        var len = array.length;
+        if (typeof(array) !== 'object' && len === undefined) {
+            throw ('object "' + typeof(array) + '" is not iterable');
+        }
+
+        sequence = [];
+        if (len) {
+            for (var i = 0; i < len; ++i) {
+                sequence.push(array[i]);
+            }
+        } else {
+            Object.keys(array).forEach(function (i) {
+                sequence.push(i);
+            });
+        }
         return this;
     };
 
@@ -78,6 +92,14 @@ range(23, 27, 0).forEach(function (item) { print(item); });
 print();
 print('range().over([0, 1, 2, 3]).forEach(...): range over an array');
 range().over([0, 1, 2, 3]).forEach(function (item) { print(item); });
+
+print();
+print('range().over({foo: 0, bar: 1}).forEach(...): range over an object');
+range().over({foo: 0, bar: 1}).forEach(function (item) { print(item); });
+
+print();
+print('range().over("Bang").forEach(...): range over a string');
+range().over("Bang").forEach(function (item) { print(item); });
 
 print();
 print('range().forEach(...): empty range');
