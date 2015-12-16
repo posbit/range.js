@@ -2,6 +2,14 @@
 JavaScript ranges for easier iteration
 
 
+## What can be iterated over?
+
+Basically anything that exposes `length` key and
+can be indexed will be treated as an array.
+
+Objects have their keys iterated over.
+
+
 ----
 
 ## Range-based iteration
