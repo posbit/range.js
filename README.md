@@ -107,3 +107,70 @@ p
 a
 m
 ```
+
+
+----
+
+
+## More advanced iteration
+
+This section presents slightly more advanced iteration examples.
+
+
+### Filtering
+
+Iteration sequences may be filtered with the `.filter(function)->Range` method.
+This method returns filtered range.
+Ranges are filtered in place.
+
+```
+range(8).filter(function(i) {
+   return ((i % 2) == 0);
+}).forEach(function(i) {
+    console.log(i);
+});
+
+0
+2
+4
+6
+```
+
+
+### Mapping
+
+Mapping functions do not return `Range()` but `Array` objects.
+Otherwise, they work as expected.
+
+
+1. `.map(function(Object)->Object)->Array`
+
+```
+range(4).map(function (i) {
+    return (i*2);
+}).forEach(function (i) {
+    print(i);
+});
+
+0
+2
+4
+6
+```
+
+
+2. `.mapOf(function(key, value)->Object)->Array`
+
+This method can be used to easily get either keys, or values of an object.
+The example below presents a way of obtaining an array (unsorted) with values.
+
+```
+orange({foo: 1, bar: 2}).mapOf(function (key, value) {
+    return value;
+}).forEach(function (i) {
+    print(i);
+});
+
+1
+2
+```
