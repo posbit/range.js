@@ -2,6 +2,11 @@ function Range(first, last, step) {
     var sequence = [];
     var object = {};
 
+    this.filter = function (callback) {
+        sequence = sequence.filter(callback);
+        return this;
+    };
+
     this.forEach = function (callback) {
         sequence.forEach(callback);
         return this;
