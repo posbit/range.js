@@ -15,6 +15,13 @@ function Range(first, last, step) {
         sequence.forEach(function (key) { callback(key, object[key], object); });
     };
 
+    this.map = function (callback) {
+        return sequence.map(callback);
+    };
+    this.mapOf = function (callback) {
+        return sequence.map(function (k) { return callback(k, object[k], object) });
+    }
+
     this.range = function (first, last, step) {
         if (first === undefined) {
             first = 0;
